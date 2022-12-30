@@ -49,6 +49,14 @@ class CategoriaApiCotroller extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!$data = $this->categorias->find($id)) {
+            return response()->json(['error' => 'Nada foi encontrado!'], 404);
+        }
+        $dataForm = $request->all();
+
+        $data->update($dataForm);
+
+        return response()->json($data);
     }
 
 
