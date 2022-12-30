@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categorias extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'nome',
+        'link',
+        'ativo',
+    ];
+
+    public function rules()
+    {
+        return [
+            'nome' => 'required|unique:categorias',
+            'link' => 'link',
+            'ativo' => 'ativo'
+        ];
+    }
 }
