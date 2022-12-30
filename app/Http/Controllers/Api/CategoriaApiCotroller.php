@@ -40,6 +40,11 @@ class CategoriaApiCotroller extends Controller
 
     public function show($id)
     {
+        if (!$data = $this->categorias->find($id)) {
+            return response()->json(['error' => 'Nada foi encontrado!'], 404);
+        } else {
+            return response()->json($data);
+        }
     }
 
     public function update(Request $request, $id)
