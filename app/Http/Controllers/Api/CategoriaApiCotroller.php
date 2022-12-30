@@ -54,5 +54,10 @@ class CategoriaApiCotroller extends Controller
 
     public function destroy($id)
     {
+        if (!$data = $this->categorias->find($id)) {
+            return response()->json(['error' => 'Nada foi encontrado!'], 404);
+        }
+        $data->delete();
+        return response()->json(['success' => 'Deletado com sucesso!']);
     }
 }
