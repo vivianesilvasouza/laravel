@@ -9,16 +9,12 @@ class Categorias extends Model
 {
     protected $fillable = [
         'nome',
-        'link',
-        'ativo',
     ];
 
     public function rules()
     {
         return [
             'nome' => 'required|unique:categorias',
-            'link' => 'link',
-            'ativo' => 'ativo'
         ];
     }
 }

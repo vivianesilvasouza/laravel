@@ -24,12 +24,25 @@ class CategoriaApiCotroller extends Controller
 
     public function store(Request $request)
     {
+        //tentei usar o validate, mas fiquei com impedimento.
+
         // $this->validate($request, $this->categorias->rules());
         // $validator = Validator::make($request->all(), [
         //     'nome' => 'required|unique:categorias',
         //     'link' => 'link',
         //     'ativo' => 'ativo'
         // ]);
+
+        //A solução que consegui desenvolver para validação.
+
+        $nome = $request['nome'];
+        $categoria = categorias::select('nome')
+            ->where('nome', $nome)
+            ->get()->first();
+
+        if ($categoria != null) {
+            return response()->json("Nome já existe!", 205);
+        }
 
         $dataForm = $request->all();
 
